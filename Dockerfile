@@ -1,5 +1,10 @@
 FROM jomjol/synology-opencv-tensorflow-lite
 
+WORKDIR /
+RUN mkdir /api
+WORKDIR /api
+COPY . .
+
 RUN pip3 --no-cache-dir install \
     PIL \
     wget \
@@ -7,4 +12,6 @@ RUN pip3 --no-cache-dir install \
     numpy \
     uvicorn
 
-CMD ["uvicorn", "server:app"]
+EXPOSE 8000
+
+CMD ["cd /api/server && uvicorn", "test:app --reload"]

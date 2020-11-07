@@ -12,7 +12,7 @@ def read_root():
     return {"Name": "TensorFlowLiteAPI"}
 
 
-@app.get("/process")
+@app.get("/process") #query parameters
 def read_process(name: str, url: str, token: Optional[str] = None):
     path = './tmp'
 
@@ -30,4 +30,5 @@ def read_process(name: str, url: str, token: Optional[str] = None):
 
     os.remove(path +'/' + filename)
 
+    #output JSON
     return {"url": url, "name": name +' - ' + filename}
