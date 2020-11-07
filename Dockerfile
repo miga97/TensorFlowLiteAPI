@@ -3,6 +3,7 @@ FROM jomjol/synology-opencv-tensorflow-lite
 WORKDIR /
 RUN mkdir /api
 WORKDIR /api
+RUN mkdir tmp
 COPY . .
 
 RUN python3 -m pip install --upgrade pip

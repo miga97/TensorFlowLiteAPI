@@ -33,14 +33,14 @@ def read_process(name: str, url: str, token: Optional[str] = None):
     
 
     ##process
-    if os.path.isfile():
+    if os.path.isfile(filePath):
         image = Image.open(filePath)
         # convert to rgb image if this isn't one
         if image.mode != "RGB":
             image = image.convert("RGB")
         # Assume model is in the parent directory for this file
         model_dir = os.getcwd() +"/models/" +modello
-        print(main(image, model_dir))
+        out = main(image, model_dir)
     else:
         print(f"Couldn't find image file {filePath}")
     ##end of process
@@ -48,7 +48,7 @@ def read_process(name: str, url: str, token: Optional[str] = None):
     os.remove(path +'/' + filename)
 
     #output JSON
-    return {"url": url, "name": name +' - ' + filename}
+    return {"url": url, "name": name +' - ' + filename, "result": out}
 
 
 #
@@ -63,7 +63,7 @@ def get_model_and_sig(model_dir):
     """Method to get name of model file. Assumes model is in the parent directory for script."""
     with open(os.path.join(model_dir, "signature.json"), "r") as f:
         signature = json.load(f)
-    model_file = signature.get("filename")
+    model_file = model_dir +"/" + signature.get("filename")
     if not os.path.isfile(model_file):
         raise FileNotFoundError(f"Model file does not exist")
     return model_file, signature
