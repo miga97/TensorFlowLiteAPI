@@ -5,8 +5,10 @@ RUN mkdir /api
 WORKDIR /api
 COPY . .
 
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade Pillow
+
 RUN pip3 --no-cache-dir install \
-    PIL \
     wget \
     fastapi \
     numpy \
@@ -14,4 +16,4 @@ RUN pip3 --no-cache-dir install \
 
 EXPOSE 8000
 
-CMD ["cd /api/server && uvicorn", "test:app --reload"]
+CMD ["cd /api && uvicorn", "test:app --reload"]
