@@ -14,6 +14,6 @@ RUN pip3 --no-cache-dir install \
     numpy \
     uvicorn
 
-EXPOSE 8000
+EXPOSE 80
 
-CMD ["cd /api && uvicorn", "test:app --reload"]
+CMD ["uvicorn", "test:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
