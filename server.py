@@ -8,20 +8,17 @@ import numpy as np
 from PIL import Image
 import tflite_runtime.interpreter as tflite
 
-modello = "test_model"
 app = FastAPI()
-
 
 @app.get("/")
 def read_root():
     return {"Name": "TensorFlowLiteAPI"}
 
-
 @app.get("/process") #query parameters
-def read_process(name: str, url: str, token: Optional[str] = None):
+def read_process(url: str, model: Optional[str] = "test_model", token: Optional[str] = None):
     path = './tmp'
 
-    if token is not None: 
+    if token is not None:
       site = url + '?token=' + token
     else:
       site = url
@@ -39,7 +36,7 @@ def read_process(name: str, url: str, token: Optional[str] = None):
         if image.mode != "RGB":
             image = image.convert("RGB")
         # Assume model is in the parent directory for this file
-        model_dir = os.getcwd() +"/models/" +modello
+        model_dir = os.getcwd() +"/models/" +model
         out = main(image, model_dir)
     else:
         print(f"Couldn't find image file {filePath}")
@@ -48,7 +45,7 @@ def read_process(name: str, url: str, token: Optional[str] = None):
     os.remove(path +'/' + filename)
 
     #output JSON
-    return {"url": url, "name": name +' - ' + filename, "result": out}
+    return {"url": url, "file": filename, "result": out}
 
 
 #
