@@ -4,16 +4,16 @@ API for Image Classification based on https://lobe.ai
 
 use your own model by binding the folder /api/models from docker
 
-base image: https://github.com/jomjol/docker-synology-opencv-tensorflow-lite
+inspired by: https://github.com/jomjol/docker-synology-opencv-tensorflow-lite
 
-TensorFLowLite without support the avx extension
+TensorFLowLite without support the avx extension,
 can run on synology with intel processor
 
 http://127.0.0.1:8000/redoc - api docs
 
 http://127.0.0.1:8000/process - api
 
-uvicorn server:app --reload - start server
+uvicorn server:app - start server
 
 
 basic functionality:
