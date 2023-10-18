@@ -1,0 +1,5 @@
+wget
+fastapi
+uvicorn
+
+pillow >= 10.0.1
