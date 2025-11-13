@@ -6,6 +6,7 @@ import io
 import time
 import requests
 import os
+import logging
 
 app = Flask(__name__)
 
@@ -15,16 +16,14 @@ def load_model():
     try:
         MODEL = keras.models.load_model('/model/keras_model.h5', compile=False)
         CLASS_NAMES = open("/model/labels.txt", "r").read().splitlines()
-        print("Modello caricato con successo")
+        logging.info("Modello caricato con successo")
     except Exception as e:
-        print(f"Errore nel caricamento del modello: {e}")
+        logging.error(f"Errore nel caricamento del modello: {e}")
         MODEL = None
         CLASS_NAMES = []
 
-load_model()
-
 def download_image(url: str, token: str = None, dest_dir: str = './tmp'):
-    print("scarico l'immagine da:", url)
+    logging.info("Scarico l'immagine da: %s", url)
     os.makedirs(dest_dir, exist_ok=True)
     if token:
         sep = '&' if '?' in url else '?'
@@ -82,19 +81,27 @@ def predict():
             "confidenza": confidence,
             "probabilita_complete": scores
         }
+        logging.info("Predizione completata con successo")
         return jsonify(response)
     except requests.RequestException as e:
+        logging.error("Errore download immagine: %s", e)
         return jsonify({"error": f"Errore download immagine: {e}"}), 400
     except Exception as e:
+        logging.error("Errore durante la predizione: %s", e)
         return jsonify({"error": f"Errore durante la predizione: {e}"}), 500
     finally:
         if tmp_file and os.path.isfile(tmp_file):
             try:
                 os.remove(tmp_file)
             except Exception:
+                logging.error("Errore durante la rimozione del file temporaneo: %s", tmp_file)
                 pass
+
+
+load_model()
 
 if __name__ == '__main__':
     # Usare un server WSGI come Gunicorn per la produzione
     # Qui usiamo la modalità debug di Flask per semplicità
+    logging.info("Avvio dell'app Flask")
     app.run(debug=True, host='0.0.0.0', port=5000)
