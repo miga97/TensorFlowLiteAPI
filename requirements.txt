@@ -3,3 +3,4 @@ Pillow
 Flask
 numpy
 gunicorn  # Per la produzione (opzionale)
+protobuf<3.20.0  # Compatibilità con TensorFlow 2.3.0
