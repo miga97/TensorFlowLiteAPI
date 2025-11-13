@@ -1,6 +1,6 @@
 # Usa un'immagine Python di base con TensorFlow preinstallato o un ambiente leggero
 # python:3.9-slim è un buon compromesso
-FROM python:3.11-slim
+FROM python:3.8-slim
 
 # Imposta la directory di lavoro nel container
 WORKDIR /app

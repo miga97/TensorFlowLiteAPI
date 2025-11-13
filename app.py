@@ -8,14 +8,6 @@ import requests
 import os
 import logging
 
-# Imposta una variabile d'ambiente per forzare TensorFlow a non usare AVX/AVX2/FMA
-# Questo può rallentare l'inferenza, ma risolve l'errore 132.
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0' 
-# Questa riga disabilita il set di istruzioni AVX2 in TensorFlow 2
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' # Supprime i warning di TF
-# Aggiungi questa variabile d'ambiente molto specifica per disabilitare i set avanzati
-os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE' # A volte necessario
-
 app = Flask(__name__)
 
 # Carica il modello e le etichette
