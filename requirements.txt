@@ -1,4 +1,5 @@
-tensorflow  #(Se tflite-runtime non si installa facilmente)
+tflite-runtime  # Questa è la libreria più leggera e veloce
+# OPPURE: tensorflow  (Se tflite-runtime non si installa facilmente)
 Pillow
 Flask
 numpy
