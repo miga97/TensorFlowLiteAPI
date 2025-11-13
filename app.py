@@ -15,6 +15,7 @@ def load_model():
     try:
         MODEL = keras.models.load_model('/model/keras_model.h5', compile=False)
         CLASS_NAMES = open("/model/labels.txt", "r").read().splitlines()
+        print("Modello caricato con successo")
     except Exception as e:
         print(f"Errore nel caricamento del modello: {e}")
         MODEL = None
@@ -23,9 +24,7 @@ def load_model():
 load_model()
 
 def download_image(url: str, token: str = None, dest_dir: str = './tmp'):
-    """
-    Scarica l'immagine dall'URL e restituisce il path del file salvato.
-    """
+    print("scarico l'immagine da:", url)
     os.makedirs(dest_dir, exist_ok=True)
     if token:
         sep = '&' if '?' in url else '?'
