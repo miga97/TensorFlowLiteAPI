@@ -11,8 +11,12 @@ VOLUME /app/model
 COPY app.py .
 COPY requirements.txt .
 
-# Installa tutte le dipendenze Python.
-RUN pip install --no-cache-dir -r requirements.txt
+# --- NUOVO PASSAGGIO CRUCIALE: Installazione forzata di tflite-runtime ---
+# Installiamo una versione di tflite-runtime per Linux x86_64 e Python 3.9
+# Questa versione è il runtime leggero che risolve il problema AVX
+RUN pip install --no-cache-dir \
+    https://github.com/google-coral/pycoral/releases/download/v2.0.0/tflite_runtime-2.5.0-cp39-cp39-linux_x86_64.whl \
+    -r requirements.txt
 
 # La porta su cui è in ascolto l'API (deve corrispondere a app.run nel codice)
 EXPOSE 5000
