@@ -1,6 +1,6 @@
-tensorflow==2.3.0
+tflite-runtime  # Questa è la libreria più leggera e veloce
+# OPPURE: tensorflow  (Se tflite-runtime non si installa facilmente)
 Pillow
 Flask
 numpy
 gunicorn  # Per la produzione (opzionale)
-protobuf<3.20.0  # Compatibilità con TensorFlow 2.3.0
