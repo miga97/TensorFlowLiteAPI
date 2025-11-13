@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from tensorflow.lite.python import interpreter as tflite_interpreter
+from tensorflow import lite as tflite
 from PIL import Image
 import numpy as np
 import time
@@ -28,7 +28,7 @@ def load_model():
 
     try:
         # 1. Carica l'interprete TFLite
-        GLOBAL_INTERPRETER = tflite_interpreter.Interpreter(model_path=MODEL_PATH)
+        GLOBAL_INTERPRETER = tflite.Interpreter(model_path=MODEL_PATH)
         GLOBAL_INTERPRETER.allocate_tensors()
         
         # 2. Ottieni dettagli degli input/output per la previsione
