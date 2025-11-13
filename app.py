@@ -8,6 +8,10 @@ import requests
 import os
 import logging
 
+# Imposta una variabile d'ambiente per forzare TensorFlow a non usare AVX/AVX2/FMA
+# Questo può rallentare l'inferenza, ma risolve l'errore 132.
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
 app = Flask(__name__)
 
 # Carica il modello e le etichette
