@@ -11,11 +11,13 @@ VOLUME /app/model
 COPY app.py .
 COPY requirements.txt .
 
-# --- NUOVO PASSAGGIO CRUCIALE: Installazione forzata di tflite-runtime ---
-# Installiamo una versione di tflite-runtime per Linux x86_64 e Python 3.9
-# Questa versione è il runtime leggero che risolve il problema AVX
+# --- NUOVO PASSAGGIO CRUCIALE: Installazione da repository ufficiale ---
+# Installiamo tflite-runtime e le altre dipendenze, 
+# dicendo a pip di cercare il binario di TFLite nel repository di Google.
 RUN pip install --no-cache-dir \
-    https://github.com/google-coral/pycoral/releases/download/v2.0.0/tflite_runtime-2.5.0-cp39-cp39-linux_x86_64.whl \
+    tflite-runtime \
+    --extra-index-url https://www.piwheels.org/simple \
+    --find-links https://github.com/google-coral/pycoral/releases \
     -r requirements.txt
 
 # La porta su cui è in ascolto l'API (deve corrispondere a app.run nel codice)
