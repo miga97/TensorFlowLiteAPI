@@ -79,7 +79,7 @@ def predict():
         scores = {CLASS_NAMES[i].strip(): float(prediction[0][i]) for i in range(len(CLASS_NAMES))}
 
         response = {
-            "stato_cancello": predicted_class,
+            "stato": predicted_class,
             "confidenza": confidence,
             "probabilita_complete": scores
         }
