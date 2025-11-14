@@ -28,7 +28,7 @@ def load_model():
 
     try:
         # 1. Carica l'interprete TFLite
-        GLOBAL_INTERPRETER = tflite_interpreter.Interpreter(model_path=MODEL_PATH)
+        GLOBAL_INTERPRETER = tflite_interpreter(model_path=MODEL_PATH)
         GLOBAL_INTERPRETER.allocate_tensors()
         
         # 2. Ottieni dettagli degli input/output per la previsione
