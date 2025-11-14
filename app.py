@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from tensorflow.lite.python import interpreter as tflite_interpreter
+from tflite_runtime.interpreter import Interpreter as tflite_interpreter
 from PIL import Image
 import numpy as np
 import time
