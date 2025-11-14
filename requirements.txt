@@ -3,4 +3,5 @@
 Pillow
 Flask
 numpy
+requests
 gunicorn  # Per la produzione (opzionale)
