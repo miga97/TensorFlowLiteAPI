@@ -1,7 +1,6 @@
 #tflite-runtime  # Questa è la libreria più leggera e veloce
-# OPPURE: tensorflow  (Se tflite-runtime non si installa facilmente)
 Pillow
 Flask
-numpy
+numpy==1.21.6 # <--- FORZA QUESTA VERSIONE per compatibilità con tflite-runtime 2.5.0
 requests
 gunicorn  # Per la produzione (opzionale)
