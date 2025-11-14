@@ -11,14 +11,14 @@ VOLUME /app/model
 COPY app.py .
 COPY requirements.txt .
 
-# --- NUOVO PASSAGGIO CRUCIALE: Installazione da repository ufficiale ---
-# Installiamo tflite-runtime e le altre dipendenze, 
-# dicendo a pip di cercare il binario di TFLite nel repository di Google.
+# --- SOLUZIONE FINALE: TFLite Runtime 2.5.0 per Python 3.9 (Corretta) ---
+# Scarica e installa la wheel di tflite-runtime 2.5.0 (versione esistente) 
+# per Python 3.9 e Linux x86_64, utilizzando il repository che hai fornito.
 RUN pip install --no-cache-dir \
-    tflite-runtime \
-    --extra-index-url https://www.piwheels.org/simple \
-    --find-links https://github.com/google-coral/pycoral/releases \
-    -r requirements.txt
+    https://github.com/google-coral/pycoral/releases/download/v2.5.0/tflite_runtime-2.5.0-cp39-cp39-linux_x86_64.whl
+    
+# Installa le altre dipendenze da requirements.txt:
+RUN pip install --no-cache-dir -r requirements.txt
 
 # La porta su cui è in ascolto l'API (deve corrispondere a app.run nel codice)
 EXPOSE 5000

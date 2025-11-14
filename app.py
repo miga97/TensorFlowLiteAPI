@@ -23,7 +23,7 @@ def load_model():
     global GLOBAL_INTERPRETER, INPUT_DETAILS, OUTPUT_DETAILS, CLASS_NAMES
     
     # Nomi dei file TFLite (supponendo che tu li abbia copiati nella directory /model)
-    MODEL_PATH = '/model/converted_tflite_fp32.tflite'
+    MODEL_PATH = '/model/model_unquant.tflite'
     LABELS_PATH = '/model/labels.txt'
 
     try:
