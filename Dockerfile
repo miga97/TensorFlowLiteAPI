@@ -15,7 +15,7 @@ COPY requirements.txt .
 # Scarica e installa la wheel di tflite-runtime 2.5.0 (versione esistente) 
 # per Python 3.9 e Linux x86_64, utilizzando il repository che hai fornito.
 RUN pip install --no-cache-dir \
-    https://github.com/google-coral/pycoral/releases/download/v2.5.0/tflite_runtime-2.5.0-cp39-cp39-linux_x86_64.whl
+    https://github.com/google-coral/pycoral/releases/download/v2.0.0/tflite_runtime-2.5.0.post1-cp39-cp39-linux_x86_64.whl
     
 # Installa le altre dipendenze da requirements.txt:
 RUN pip install --no-cache-dir -r requirements.txt
